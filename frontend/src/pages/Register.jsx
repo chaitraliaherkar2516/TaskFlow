@@ -4,6 +4,7 @@ import API from "../services/api";
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -53,6 +54,12 @@ function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+           <input
+  type="password"
+  placeholder="Confirm your password"
+  value={confirmPassword}
+  onChange={(e) => setConfirmPassword(e.target.value)}
+/>
 
           <button type="submit">Register</button>
         </form>

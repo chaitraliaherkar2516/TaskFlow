@@ -2,40 +2,23 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import "./App.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
 
-  if (!loggedIn) {
-    return (
-      <div>
-        {showRegister ? (
-          <>
-            <Register />
-
-            <div style={{ textAlign: "center" }}>
-              <button onClick={() => setShowRegister(false)}>
-                Back to Login
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <Login onLogin={() => setLoggedIn(true)} />
-
-            <div style={{ textAlign: "center" }}>
-              <button onClick={() => setShowRegister(true)}>
-                Create New Account
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-    );
-  }
-
-  return <Home onLogout={() => setLoggedIn(false)} />;
+  return (
+    <>
+      {loggedIn ? (
+        <Home onLogout={() => setLoggedIn(false)} />
+      ) : (
+        <div className="auth-layout">
+          <Login onLogin={() => setLoggedIn(true)} />
+          <Register />
+        </div>
+      )}
+    </>
+  );
 }
 
 export default App;
